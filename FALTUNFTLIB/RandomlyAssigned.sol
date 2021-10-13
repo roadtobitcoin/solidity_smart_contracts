@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 
 /// @author 1001.digital
 /// @title Randomly assign tokenIDs from a given set of tokens.
-abstract contract RandomlyAssigned is WithLimitedSupply {
+abstract contract RandomlyAssigned is ERC721Enumerable {
     // Used for random index assignment
     mapping(uint256 => uint256) private tokenMatrix;
 
