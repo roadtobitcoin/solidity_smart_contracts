@@ -19,7 +19,7 @@ contract Cryptopanda is ERC721Enumerable, Ownable, RandomlyAssigned {
   constructor(    string memory _initBaseURI,
     string memory _initNotRevealedUri) 
     ERC721("Panda", "PAN")
-    RandomlyAssigned(20,1) // Max. 10000 NFTs available; Start counting from 1 (instead of 0)
+    RandomlyAssigned(4, 1) // Max. 10000 NFTs available; Start counting from 1 (instead of 0)
     {
        for (uint256 a = 1; a <= 1; a++) {
             buy();
@@ -94,6 +94,19 @@ contract Cryptopanda is ERC721Enumerable, Ownable, RandomlyAssigned {
 
     function withdraw() public payable onlyOwner {
     require(payable(msg.sender).send(address(this).balance));
+  }
+  
+  function walletOfOwner(address _owner)
+    public
+    view
+    returns (uint256[] memory)
+  {
+    uint256 ownerTokenCount = balanceOf(_owner);
+    uint256[] memory tokenIds = new uint256[](ownerTokenCount);
+    for (uint256 i; i < ownerTokenCount; i++) {
+      tokenIds[i] = tokenOfOwnerByIndex(_owner, i);
+    }
+    return tokenIds;
   }
   
   
