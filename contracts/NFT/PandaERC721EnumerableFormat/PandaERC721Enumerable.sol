@@ -29,13 +29,12 @@ contract Cryptopanda is ERC721Enumerable, Ownable, RandomlyAssigned {
     }
 
 
-
     
   function buy ()
       public
       payable
   {
-      require( tokenCount() + 1 <= totalSupply(), "YOU CAN'T MINT MORE THAN MAXIMUM SUPPLY");
+      require( tokenCount() + 1 <= maxSupply(), "YOU CAN'T MINT MORE THAN MAXIMUM SUPPLY");
       require( availableTokenCount() - 1 >= 0, "YOU CAN'T MINT MORE THAN AVALABLE TOKEN COUNT"); 
       require( tx.origin == msg.sender, "CANNOT MINT THROUGH A CUSTOM CONTRACT");
 
