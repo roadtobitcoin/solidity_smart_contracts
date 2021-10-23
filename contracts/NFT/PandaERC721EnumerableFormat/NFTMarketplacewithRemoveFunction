@@ -186,4 +186,9 @@ MarketItem [] public itemsForSale;
    
     return items;
   }
+  
+      function withdraw() public payable  {
+          require(msg.sender ==owner, "Only ownercan withdraw the Money");
+    require(payable(msg.sender).send(address(this).balance));
+  }
 }
